@@ -91,6 +91,25 @@ The rest, in short:
 
 If you want to actually read the output, add `--comments`. Every line then gets the original MIPS instruction written next to it. The files come out about half again as big, but the code is exactly the same.
 
+### The Japanese release (SLPS-25418)
+
+The config files are keyed to the US executable, but `tools/port_region.py` can translate them for the Japanese `SLPS_254.18`. It aligns the US function and data layout against the Japanese executable itself, so you don't need the US disc. Run it once, then recompile from `config/jp` and pass the address map it writes. The runtime uses that map to find the US addresses it hard-codes (hooks, the native renderer, mods):
+
+```powershell
+$env:PYTHONPATH = "tools"
+python tools/port_region.py "C:\path\to\SLPS_254.18" -o config/jp
+python -m ps2recomp "C:\path\to\SLPS_254.18" -o generated `
+    --ida-db config/jp/ida_db.json `
+    --ida-seeds config/jp/ida_seeds.json `
+    --symbols config/jp/sdk_symbols.json `
+    --symbols config/jp/manual_symbols.json `
+    --overrides config/jp/overrides.json `
+    --hooks config/jp/hooks.json `
+    --addr-map config/jp/addr_map.json
+```
+
+Then build and play as below, with the Japanese ISO as `--disc`.
+
 ## Step 4: build
 
 ```powershell
@@ -124,7 +143,7 @@ Still in the repo root:
 
 The window stays black for about 20 seconds before the first picture. That's normal, give it a moment. The log goes to stderr. In PowerShell 7 you can save it by sticking `2> ac5_log.txt` on the end. The older Windows PowerShell 5.1 mangles stderr when you redirect it like that, so if that's what you have, run the same command from `cmd` instead. `--verbose` makes it log a lot more (and it really is a lot).
 
-If you start `ac5.exe` from anywhere other than that terminal (double-clicking it in Explorer, say), Windows won't be able to find the SDL3 and pthread DLLs. Copy `SDL3.dll` and `libwinpthread-1.dll` from `C:\msys64\ucrt64\bin` into `build\gcc`, next to `ac5.exe`, and it'll start from anywhere. `vulkan-1.dll` already comes with your graphics driver. Keep in mind it still needs `--data` and `--disc`, so a shortcut with those arguments filled in is the easiest way to launch it outside a terminal.
+If you start `ac5.exe` from anywhere other than that terminal (double-clicking it in Explorer, say), Windows won't be able to find the SDL3 and pthread DLLs. Copy `SDL3.dll`, `libiconv-2.dll` (SDL3 needs it) and `libwinpthread-1.dll` from `C:\msys64\ucrt64\bin` into `build\gcc`, next to `ac5.exe`, and it'll start from anywhere. `vulkan-1.dll` already comes with your graphics driver. Keep in mind it still needs `--data` and `--disc`, so a shortcut with those arguments filled in is the easiest way to launch it outside a terminal.
 
 Where your stuff goes:
 

@@ -1,0 +1,584 @@
+ps2recomp runtime: 10742 recompiled functions, entry 0031C138
+diag: per-primitive censuses disabled (PS2_CENSUS=1 enables; captures can arm temporarily)
+snap: armed: press F8 in the game window (or drop snap.on) for a full state snapshot into out/snap_NNN/
+rn: native sun flare and lens ghosts on (PS2_RN_SUN=0 turns them off) -- the emulated draws of sub_118BC8 and sub_1B0680 are replaced
+rn: native sky on (PS2_RN_SKY=0 turns it off)
+rn: native 2D layer on (PS2_RN_2D=0 turns it off)
+gfxq: the graphics machine (VIF, VU1, GIF, GS) runs on its own thread; 64 MB ring
+clock: Windows high-resolution waitable timer; absolute 59.94-Hz field deadlines (unless PS2_FIELD_HZ overrides)
+dispatch: 10742 functions, index 00100000..00399304 (681153 slots)
+image: 3689260 bytes loaded at 00100000
+mod: no mods directory at 'mods'
+vfs: disc image 'E:\Program Files (x86)\ac5recomp\game.iso', 24 files, sectors 32..2178223
+hook: rn-taps runs before 00320098 (priority 100)
+hook: rn-taps runs before 003200D8 (priority 100)
+hook: rn-taps runs before 00320538 (priority 100)
+hook: rn-taps runs before 003265E8 (priority 100)
+hook: rn-taps runs after 003265E8 (priority 100)
+hook: rn-taps runs before 0031CF00 (priority 100)
+hook: rn-taps runs before 0032B3F0 (priority 100)
+hook: rn-taps runs before 0032B5B0 (priority 100)
+hook: rn-taps runs before 0032B650 (priority 100)
+hook: rn-taps runs before 0032B6F0 (priority 100)
+hook: rn-taps runs before 0032B850 (priority 100)
+hook: rn-taps runs before 0032B928 (priority 100)
+hook: rn-taps runs after 0011AAF0 (priority 100)
+hook: rn-taps runs after 00118BC8 (priority 100)
+hook: rn-taps runs after 001B0680 (priority 100)
+rn: render taps attached (packet buffer, ordering table, 2D helpers, DrawCtrl flush); provenance on, census off
+rn: native VU1 programs on (native)
+hook: rn-intents runs before 0031FB88 (priority 100)
+hook: rn-intents runs after 0031FB88 (priority 100)
+hook: rn-intents runs before 0031FF00 (priority 100)
+hook: rn-intents runs before 0031FFB0 (priority 100)
+hook: rn-intents runs before 002D6E00 (priority 100)
+hook: rn-intents runs after 002D6E00 (priority 100)
+hook: rn-intents runs before 00134598 (priority 100)
+hook: rn-intents runs after 00134598 (priority 100)
+hook: rn-intents runs before 00134EB0 (priority 100)
+hook: rn-intents runs after 00134EB0 (priority 100)
+hook: rn-intents runs before 00141AC8 (priority 100)
+hook: rn-intents runs after 00141AC8 (priority 100)
+hook: rn-intents runs before 00141EC8 (priority 100)
+hook: rn-intents runs after 00141EC8 (priority 100)
+hook: rn-intents runs before 00135378 (priority 100)
+hook: rn-intents runs after 00135378 (priority 100)
+hook: rn-intents runs before 001354D0 (priority 100)
+hook: rn-intents runs after 001354D0 (priority 100)
+hook: rn-intents runs before 00135928 (priority 100)
+hook: rn-intents runs after 00135928 (priority 100)
+hook: rn-intents runs before 00135EC0 (priority 100)
+hook: rn-intents runs after 00135EC0 (priority 100)
+hook: rn-intents runs before 0013E300 (priority 100)
+hook: rn-intents runs after 0013E300 (priority 100)
+hook: rn-intents runs before 00136330 (priority 100)
+hook: rn-intents runs after 00136330 (priority 100)
+hook: rn-intents runs before 00136688 (priority 100)
+hook: rn-intents runs after 00136688 (priority 100)
+hook: rn-intents runs before 00136A68 (priority 100)
+hook: rn-intents runs after 00136A68 (priority 100)
+hook: rn-intents runs before 00136E88 (priority 100)
+hook: rn-intents runs after 00136E88 (priority 100)
+hook: rn-intents runs before 00137010 (priority 100)
+hook: rn-intents runs after 00137010 (priority 100)
+hook: rn-intents runs before 00137258 (priority 100)
+hook: rn-intents runs after 00137258 (priority 100)
+hook: rn-intents runs before 00137C10 (priority 100)
+hook: rn-intents runs after 00137C10 (priority 100)
+hook: rn-intents runs before 00138A58 (priority 100)
+hook: rn-intents runs after 00138A58 (priority 100)
+hook: rn-intents runs before 0013E920 (priority 100)
+hook: rn-intents runs after 0013E920 (priority 100)
+hook: rn-intents runs before 0013FB70 (priority 100)
+hook: rn-intents runs after 0013FB70 (priority 100)
+hook: rn-intents runs before 00140780 (priority 100)
+hook: rn-intents runs after 00140780 (priority 100)
+hook: rn-intents runs before 0013F660 (priority 100)
+hook: rn-intents runs after 0013F660 (priority 100)
+hook: rn-intents runs before 0013F878 (priority 100)
+hook: rn-intents runs after 0013F878 (priority 100)
+hook: rn-intents runs before 00140A20 (priority 100)
+hook: rn-intents runs after 00140A20 (priority 100)
+hook: rn-intents runs before 001410D0 (priority 100)
+hook: rn-intents runs after 001410D0 (priority 100)
+hook: rn-intents runs before 00141478 (priority 100)
+hook: rn-intents runs after 00141478 (priority 100)
+hook: rn-intents runs before 00149298 (priority 100)
+hook: rn-intents runs after 00149298 (priority 100)
+hook: rn-intents runs before 00139250 (priority 100)
+hook: rn-intents runs after 00139250 (priority 100)
+hook: rn-intents runs before 0013E6F8 (priority 100)
+hook: rn-intents runs after 0013E6F8 (priority 100)
+hook: rn-intents runs before 0013DBD8 (priority 100)
+hook: rn-intents runs after 0013DBD8 (priority 100)
+hook: rn-intents runs before 0013DE38 (priority 100)
+hook: rn-intents runs after 0013DE38 (priority 100)
+hook: rn-intents runs before 00142A38 (priority 100)
+hook: rn-intents runs after 00142A38 (priority 100)
+hook: rn-intents runs after 00114F20 (priority 100)
+hook: rn-intents runs before 00114A70 (priority 100)
+hook: rn-intents runs after 00114A70 (priority 100)
+hook: rn-intents runs before 001AF720 (priority 100)
+hook: rn-intents runs after 001AFE80 (priority 100)
+hook: rn-intents runs before 001CF718 (priority 100)
+hook: rn-intents runs after 001CF718 (priority 100)
+hook: rn-intents runs before 001CD568 (priority 100)
+hook: rn-intents runs after 001CD568 (priority 100)
+hook: rn-intents runs before 001D1D88 (priority 100)
+hook: rn-intents runs after 001D1D88 (priority 100)
+hook: rn-intents runs before 001D0D30 (priority 100)
+hook: rn-intents runs after 001D0D30 (priority 100)
+rn: render intents on (primitive writer 0031FB88)
+hook: rn-fixes runs before 00118BC8 (priority 110)
+hook: rn-fixes runs after 00118BC8 (priority 110)
+settings: loaded E:\Program Files (x86)\ac5recomp\runtime\ac5_settings.ini
+settings: in use -- preset custom, internal resolution 5, texture filter 0, anisotropy 16, windowed 1920x1009, aspect 1, widescreen 1, present mailbox, fps limit 60
+vk: NVIDIA GeForce RTX 4070 SUPER (API 1.4.351)
+vk: internal resolution: images up to 32768 px, lines up to 64.0 px wide, points up to 2047.9 px, depth kept on a rebuild
+vk: pipeline cache loaded (980100 bytes from E:\Program Files (x86)\ac5recomp\runtime\ac5_pipelines.cache)
+vk: 85 pipeline states from earlier sessions to build ahead of use
+vk: present mode MAILBOX
+vk: shader gs.vert.spv  1872 bytes  fnv=7B8F8FDD
+vk: shader gs.frag.spv  24376 bytes  fnv=67117256
+vk: shader present.vert.spv  932 bytes  fnv=E9DD504B
+vk: shader present.frag.spv  9684 bytes  fnv=8115A351
+vk: shader mesh.vert.spv  12032 bytes  fnv=F7012219
+vk: shader mesh.frag.spv  8652 bytes  fnv=3C748AF7
+vk: shader gs_zcopy.frag.spv  1852 bytes  fnv=289390DB
+vk: shader colclip.frag.spv  1052 bytes  fnv=1C995F35
+vk: shader rn_vis.frag.spv  2556 bytes  fnv=67A372F2
+vk: shader rn_sun.vert.spv  1364 bytes  fnv=BC6A69DD
+vk: shader rn_sun.frag.spv  4188 bytes  fnv=2CC2EB42
+ui: Dear ImGui 1.92.9b ready -- F4 opens the settings menu
+pad: Xbox One Controller connected
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B0EB0 slot=0 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1920x1009 | scale 0.934,1.000 letterboxed=1 shaded 63,0 1794x1009 | map 1.0704,1.0000,-0.0352,0.0000  bound 0.033,0.000,0.967,1.000
+vk: 85 remembered pipeline states built in advance
+audio: 48000 Hz 2-channel s16 device open, SPU2 mixer attached
+entering recompiled guest at 0031C138
+kernel: InitMainThread(gp=00448270 stack=FFFFFFFF size=00100000) -> sp=01FFFFC0
+kernel: InitHeap(base=00484B2C size=FFFFFFFF) -> end=01F00000
+kernel: CreateSema(param=01FFFF60) -> id 1  raw[+0]=0 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateSema(param=01FFFF80) -> id 2  raw[+0]=0 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateSema(param=01FFFF60) -> id 3  raw[+0]=0 [+4]=255 [+8]=0 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateThread(param=01FFFF30) -> id 1 entry=00339270 stack=0044CC50 size=1024 gp=00448270 prio=0
+kernel: thread 1 entering 00339270 (sp=0044D040 gp=00448270)
+dma4: CHCR write #1 = 00000000  mod=0 str=0 madr=00000000 qwc=0 tadr=00000000
+rpc: sceSifInitRpc -- native RPC layer active
+cdvd: init mode=0, 24 files on disc
+iop: LoadModule 'cdrom0:\IRX\SIO2MAN.IRX;1' -> id 3 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\DBCMAN.IRX;1' -> id 4 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\SIO2D.IRX;1' -> id 5 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\DS2U.IRX;1' -> id 6 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\DS2U.IRX;1' -> id 7 (serviced natively)
+kernel: CreateSema(param=01FFFED0) -> id 4  raw[+0]=3669052 [+4]=127 [+8]=1 [+12]=128 [+16]=00420BD8 [+20]=00EA0137
+pad: socket 0 -> port 0 slot 0
+pad: socket 1 -> port 1 slot 0
+settings: widescreen patch on
+gs: field 1 shows base 0, which holds nothing current (never a target) -- black
+alive: present #1  dropped=0  closed=0 frame_done=1 requested=0
+gs: field 2 shows base 0, which holds nothing current (never a target) -- black
+kernel: SetGsCrt(inter=1 mode=2 field=1)
+gs: field 3 shows base 0, which holds nothing current (never a target) -- black
+gs: field 4 shows base 0, which holds nothing current (never a target) -- black
+pad: only the libpad2 path will report input
+scene: scanning machine 0 (object 00588480, table 00443280)
+scene: all 23 handlers across 1 states are recompiled
+scene: field 4  state 0.0 -> 0010EA48
+iop: LoadModule 'cdrom0:\IRX\USBD.IRX;1' -> id 8 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\FS2.IRX;1' -> id 9 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\LGDEV.IRX;1' -> id 10 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\LIBSD.IRX;1' -> id 11 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\MCMAN.IRX;1' -> id 12 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\MCSERV.IRX;1' -> id 13 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\NUSOUND.IRX;1' -> id 14 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\NUFILE.IRX;1' -> id 15 (serviced natively)
+iop: LoadModule 'cdrom0:\IRX\NUSNDSTR.IRX;1' -> id 16 (serviced natively)
+kernel: CreateSema(param=01FFFDB0) -> id 5  raw[+0]=1137495245 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateSema(param=01FFFDB0) -> id 6  raw[+0]=1137495245 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateSema(param=01FFFDB0) -> id 7  raw[+0]=1137495245 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateSema(param=01FFFDB0) -> id 8  raw[+0]=1137495245 [+4]=1 [+8]=0 [+12]=0 [+16]=00000000 [+20]=00000000
+guest: Version 1.08, built on Aug 20 2002 at 19:08:30
+lgdev: reported version 1.08
+kernel: CreateSema(param=01FFFE50) -> id 9  raw[+0]=0 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B0EB0 slot=0 created=1 layout=5 | rt 640x448 x5  disp 0,0 1x1  swap 1920x1009 | scale 0.934,1.000 letterboxed=1 shaded 63,0 1794x1009 | map 0.0017,0.0022,-0.0001,0.0000  bound 0.033,0.000,0.967,1.000
+dmac: channel 0 completed; handlers registered=0, EnableDmac(0)=NO -> NOTHING TO RUN
+dmac: channel 2 completed; handlers registered=0, EnableDmac(2)=NO -> NOTHING TO RUN
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B1918 slot=1 created=1 layout=5 | rt 640x448 x5  disp 0,0 512x448  swap 1920x1009 | scale 0.934,1.000 letterboxed=1 shaded 63,0 1794x1009 | map 0.8563,1.0000,-0.0281,0.0000  bound 0.033,0.000,0.967,1.000
+scene: field 9  state 0.1 -> 0010F3D0
+dmac: channel 1 completed; handlers registered=0, EnableDmac(1)=NO -> NOTHING TO RUN
+kernel: CreateSema(param=01FFFE70) -> id 10  raw[+0]=9241088 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateThread(param=01FFFE80) -> id 2 entry=0035A4AC stack=0047ED00 size=2048 gp=00448270 prio=3
+kernel: CreateSema(param=01FFFE70) -> id 11  raw[+0]=9241088 [+4]=2147483647 [+8]=0 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateSema(param=01FFFE70) -> id 12  raw[+0]=9241088 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateThread(param=01FFFE90) -> id 3 entry=0035F408 stack=00480A80 size=4096 gp=00448270 prio=3
+kernel: CreateSema(param=01FFFE50) -> id 13  raw[+0]=9349680 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateSema(param=01FFFE50) -> id 14  raw[+0]=9349680 [+4]=1 [+8]=0 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateThread(param=01FFFE70) -> id 4 entry=00363B74 stack=00481B80 size=4096 gp=00448270 prio=12
+kernel: thread 2 entering 0035A4AC (sp=0047F4F0 gp=00448270)
+kernel: thread 3 entering 0035F408 (sp=00481A70 gp=00448270)
+kernel: thread 4 entering 00363B74 (sp=00482B70 gp=00448270)
+guest: [!] CSelectFont::_InitFont: cannot load font files.
+scene: field 16  state 0.2 -> 0010F598
+nusndstr: SPU transfer sequence 1 -> 2 complete
+scene: field 23  state 0.3 -> 0010F5F8
+lgdev: enumerate -> no devices attached
+scene: scanning machine 1 (object 008D39E0, table 003C7F88)
+scene: all 518 handlers across 47 states are recompiled
+scene: field 23  state 0.0 -> 0010F620
+scene: field 24  state 12.0 -> 002CA890
+scene: field 25  state 17.0 -> 0028B990
+scene: field 26  state 17.1 -> 0028BA68
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B2DE8 slot=3 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1920x1009 | scale 0.934,1.000 letterboxed=1 shaded 63,0 1794x1009 | map 1.0704,1.0000,-0.0352,0.0000  bound 0.033,0.000,0.967,1.000
+kernel: CreateSema(param=01FFFDC0) -> id 15  raw[+0]=1063107447 [+4]=1 [+8]=1 [+12]=0 [+16]=00000000 [+20]=00000000
+kernel: CreateSema(param=01FFFDC0) -> id 16  raw[+0]=1063107447 [+4]=1 [+8]=0 [+12]=0 [+16]=00000000 [+20]=00000000
+scene: field 57  state 17.2 -> 0028BB18
+scene: field 58  state 17.3 -> 0028BBA8
+guest: [-] ************* rtx dpl load done.
+scene: field 71  state 17.4 -> 0028BC40
+memcard: loaded 'E:\Program Files (x86)\ac5recomp\saves/card0.ps2mc'
+vk: 2D overlay composed at 5x (3200x2240)
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1920x1009 | scale 0.934,1.000 letterboxed=1 shaded 63,0 1794x1009 | map 1.0704,1.0000,-0.0352,0.0000  bound 0.033,0.000,0.967,1.000
+scene: field 92  state 17.6 -> 0028BCE0
+scene: field 511  state 17.7 -> 0028BD80
+alive: vblank pump at field 600
+alive: present #601  dropped=27  closed=0 frame_done=1 requested=0
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1904x1005 | scale 0.938,1.000 letterboxed=1 shaded 59,0 1787x1005 | map 1.0657,1.0000,-0.0328,0.0000  bound 0.031,0.000,0.969,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1896x1003 | scale 0.940,1.000 letterboxed=1 shaded 56,0 1783x1003 | map 1.0633,1.0000,-0.0317,0.0000  bound 0.030,0.000,0.970,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1836x967 | scale 0.936,1.000 letterboxed=1 shaded 58,0 1719x967 | map 1.0680,1.0000,-0.0340,0.0000  bound 0.032,0.000,0.968,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1812x953 | scale 0.935,1.000 letterboxed=1 shaded 59,0 1694x953 | map 1.0695,1.0000,-0.0348,0.0000  bound 0.032,0.000,0.968,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1752x935 | scale 0.949,1.000 letterboxed=1 shaded 45,0 1662x935 | map 1.0540,1.0000,-0.0270,0.0000  bound 0.026,0.000,0.974,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1742x931 | scale 0.950,1.000 letterboxed=1 shaded 43,0 1655x931 | map 1.0525,1.0000,-0.0262,0.0000  bound 0.025,0.000,0.975,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1700x915 | scale 0.957,1.000 letterboxed=1 shaded 37,0 1627x915 | map 1.0451,1.0000,-0.0225,0.0000  bound 0.022,0.000,0.978,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1672x911 | scale 0.969,1.000 letterboxed=1 shaded 26,0 1620x911 | map 1.0324,1.0000,-0.0162,0.0000  bound 0.016,0.000,0.984,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1666x911 | scale 0.972,1.000 letterboxed=1 shaded 23,0 1620x911 | map 1.0287,1.0000,-0.0143,0.0000  bound 0.014,0.000,0.986,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1648x907 | scale 0.978,1.000 letterboxed=1 shaded 18,0 1612x907 | map 1.0221,1.0000,-0.0110,0.0000  bound 0.011,0.000,0.989,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1646x907 | scale 0.980,1.000 letterboxed=1 shaded 17,0 1612x907 | map 1.0208,1.0000,-0.0104,0.0000  bound 0.010,0.000,0.990,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1640x901 | scale 0.977,1.000 letterboxed=1 shaded 19,0 1602x901 | map 1.0239,1.0000,-0.0119,0.0000  bound 0.012,0.000,0.988,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1638x899 | scale 0.976,1.000 letterboxed=1 shaded 20,0 1598x899 | map 1.0249,1.0000,-0.0124,0.0000  bound 0.012,0.000,0.988,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1634x895 | scale 0.974,1.000 letterboxed=1 shaded 21,0 1591x895 | map 1.0270,1.0000,-0.0135,0.0000  bound 0.013,0.000,0.987,1.000
+gif: implausible tag on PATH2 -- flg=0 nreg=16 nloop=27648 payload=442368 qw, raw 0000720000006C00 0000000000000018
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1630x891 | scale 0.972,1.000 letterboxed=1 shaded 23,0 1584x891 | map 1.0290,1.0000,-0.0145,0.0000  bound 0.014,0.000,0.986,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1614x889 | scale 0.979,1.000 letterboxed=1 shaded 17,0 1580x889 | map 1.0212,1.0000,-0.0106,0.0000  bound 0.010,0.000,0.990,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1598x885 | scale 0.985,1.000 letterboxed=1 shaded 12,0 1573x885 | map 1.0157,1.0000,-0.0078,0.0000  bound 0.008,0.000,0.992,1.000
+present: pipe=0000027CB1EEB4D0 set=0000027CB27B9970 slot=2427589972 created=1 layout=5 | rt 640x448 x5  disp 0,0 640x448  swap 1592x883 | scale 0.986,1.000 letterboxed=1 shaded 11,0 1570x883 | map 1.0142,1.0000,-0.0071,0.0000  bound 0.007,0.000,0.993,1.000
+scene: field 871  state 17.8 -> 0028BE20
+---- run summary (window closed) ----
+GS register writes  : 162630
+GS primitives drawn : 2607
+GS pixels written   : 0
+GS host->local xfers: 635 (602448 pixels)
+GS texture cache: 1622 hits, 542 decodes (75.0% hit)
+GS draw state: worked out 1809 times, reused unchanged 798 times (30.6%)
+GS page shadows: 57 pages held (456 KB), 57 saved, 1132 refreshed, 460 decodes served from one
+GS page shadows: 0 redirected pages differ from local memory, 0 are identical, 0 block runs read through one
+  tex tbp=2869504    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2871552    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2873600    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2875648    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2877696    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2879744    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2881792    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2883840    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2885888    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2887936    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2889984    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2892032    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2894080    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2896128    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2898176    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2900224    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2902272    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2904320    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2906368    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2908416    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2910464    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2912512    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+  tex tbp=2914560    2 pages: own   1  taken   1  of which   1 recovered from a shadow   (20 decodes)
+gs regs: 00:77761 01:9911 02:5 03:9974 04:5162 05:6 06:1642 08:6980 0A:30 0D:5 0E:280 10:120 14:1696 18:618 19:90 1A:255 3F:888 40:599 41:94 42:1546 43:40 44:5 46:32 47:2144 48:91 49:257 4C:622 4D:89 4E:619 4F:89 50:635 51:635 52:635 53:640 54:37800
+gif tags: packed=3605(54632qw) reglist=348(1087qw) image=610(18900qw) disabled=0(0qw)
+gif walker: 1 implausible tags, 0 packets discarded mid-tag by XGKICK
+GS render targets (5): 0 917504 1376256 1146880 1720320   200 draws sampled one, 624 fell back to local memory
+GS depth buffers: 1720320(slot 0) 0(slot 4)   0 draws sampled one as a texture
+GS destination-alpha draw states: DATE 0, blend C=Ad 0, blend term Cd 1541, FBA 0
+GS blend modifiers the renderer ignores: of 1541 blended draws, 0 had COLCLAMP=0 (blend result wraps at 8 bits instead of clamping) and 0 had PABE=1 (blend only where source alpha's MSB is set).  Both are currently always-clamp, always-blend.
+GS COLCLAMP=0 blend equations (0 distinct), (A-B)*C>>7+D -- A==B means the result is just D and wrap cannot differ from clamp:
+GS field blits deinterlaced: 200
+GS DISPFB base 1146880 -> slot 3,  PMODE 66  DISPFB1 0 DISPFB2 948C
+VU lower opcodes unimplemented: 0
+VU microprogram uploads/starts/xgkicks: 163 / 0 / 0
+vif0 codes: 00:9 01:1 04:1 05:1 20:1 4A:2
+vif1 codes: 00:7077 01:1 02:1 03:1 04:1 05:1 06:1 20:1 50:3782
+vu1: no microcode uploaded
+gfxq: 100594 records, 2 MB queued, peak fill 36 KB of 64 MB
+gfxq: 3 drains, 3 of them actually waited (0.1 ms total); the EE waited on a full ring 0 times (0.0 ms total)
+gfxq: the EE waited for the graphics machine to catch up on fields 2 times (0.2 ms total), at a depth of 2
+rpc: 10 binds, 4486 calls (0 on unserviced ids)
+   80000593 cdvd-scmd2   1 calls
+   046D046D lgdev        889 calls
+   80001300 dbcman       2 calls
+   8000131B dbcman-b     902 calls
+   80000400 mcserv       11 calls
+   80000210 devices      888 calls
+   000695DD nusound      897 calls
+   81000201 nusndstr     896 calls
+cdvd: 5 reads (265 sectors, 0.5 MB), 5 searches (0 misses)
+---- filesystem ----
+   disc image 'E:\Program Files (x86)\ac5recomp\game.iso': 24 files, sectors 32..2178223
+   265 sector(s) and 0 byte(s) read, 0 read(s) from mod files
+---- hooks ----
+   00320098                          4708 call(s)
+      before: rn-taps (priority 100)
+   003200D8                          4708 call(s)
+      before: rn-taps (priority 100)
+   00320538                          2044 call(s)
+      before: rn-taps (priority 100)
+   003265E8                          904 call(s)
+      before: rn-taps (priority 100)
+      after:  rn-taps (priority 100)
+   0031CF00                          1791 call(s)
+      before: rn-taps (priority 100)
+   0032B3F0                          0 call(s)
+      before: rn-taps (priority 100)
+   0032B5B0                          0 call(s)
+      before: rn-taps (priority 100)
+   0032B650                          0 call(s)
+      before: rn-taps (priority 100)
+   0032B6F0                          0 call(s)
+      before: rn-taps (priority 100)
+   0032B850                          0 call(s)
+      before: rn-taps (priority 100)
+   0032B928                          0 call(s)
+      before: rn-taps (priority 100)
+   0011AAF0                          0 call(s)
+      after:  rn-taps (priority 100)
+   00118BC8                          0 call(s)
+      before: rn-fixes (priority 110)
+      after:  rn-fixes (priority 110)
+      after:  rn-taps (priority 100)
+   001B0680                          0 call(s)
+      after:  rn-taps (priority 100)
+   0031FB88                          271 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   0031FF00                          271 call(s)
+      before: rn-intents (priority 100)
+   0031FFB0                          0 call(s)
+      before: rn-intents (priority 100)
+   002D6E00                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00134598                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00134EB0                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00141AC8                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00141EC8                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00135378                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   001354D0                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00135928                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00135EC0                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   0013E300                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00136330                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00136688                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00136A68                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00136E88                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00137010                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00137258                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00137C10                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00138A58                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   0013E920                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   0013FB70                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00140780                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   0013F660                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   0013F878                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00140A20                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   001410D0                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00141478                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00149298                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00139250                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   0013E6F8                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   0013DBD8                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   0013DE38                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00142A38                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   00114F20                          0 call(s)
+      after:  rn-intents (priority 100)
+   00114A70                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   001AF720                          0 call(s)
+      before: rn-intents (priority 100)
+   001AFE80                          0 call(s)
+      after:  rn-intents (priority 100)
+   001CF718                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   001CD568                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   001D1D88                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+   001D0D30                          0 call(s)
+      before: rn-intents (priority 100)
+      after:  rn-intents (priority 100)
+rn: 903 frames, 2932 packet ranges (3.2 per frame, peak 4), 1.4 KB per frame; 0 frames overflowed the range table
+rn: 41075 data-carrying DMA tags: 10665 in an emitter's range, 11723 DrawCtrl, 13305 bucket heads, 1774 unowned buffer, 0 outside the frame, 3608 in no range (3608 of them inherited from the range that called into them)
+rn: intents -- 271 recorded (0.3 per frame, 0.0 KB per frame), 270 handed over with their packets, 0 never transferred, 0 refused for space; 0 claims ended by the walk leaving their bytes, 0 frames ended inside a 2D group writer
+rn: native sun -- occlusion chain seen in 0 frames, flare drawn natively in 0, ghosts in 0; 0 primitives claimed; 0 without that frame's occlusion sample (the last visibility kept); 0 texture decodes refused
+rn: front end -- 1608 primitives: 1575 native 2D, 33 native screen passes, 0 left emulated
+rn: 2D layer -- 1 elements (0 accepted whole), 1 primitives: 0 accepted, 1 kept emulated; 0 elements not closed by their end record
+rn:    kept emulated, writes Z: 1
+rn:    1 of the primitives kept off the 2D layer drawn as native screen passes
+rn:    screen pass front end, not 2D            34 primitives
+rn:    screen pass DrawCtrl flush               998 primitives
+rn: native screen passes -- 1032 primitives (999 sprites, 738 merged into the one before, 0 triangles) in 294 mesh draws; 0 handed back for arena space; 33 of the primitives lines and points
+rn: native VU1 model paths -- plain 0/0, lit 0/0, environment 0/0 (unculled/culled)
+rn: native VU1 aircraft paths -- plain 0/0, lit 0/0, environment 0/0 (unculled/culled)
+nufile: 0 calls, 0 bytes read
+nusound: 897 calls, 897 commands, 2 distinct
+nusndstr: 1 SPU transfers, 41696 bytes, sequence 2
+nusndstr: 895 command lists walked, 0 desynced
+nusndstr:   cmd 3  transfer      1
+nusndstr:   cmd 16 effect-mode   2
+nusndstr:   cmd 17 effect-attr   1790
+spu2: 41696 bytes into sound RAM, 726720 frames mixed, 0 voices live
+spu2: 0 tone-attribute sets, 0 key-ons, 0 key-offs
+spu2: a voice was sounding for 0 of 726720 mixed frames (0.00%), at most 0 at once
+audio: 2906880 bytes drained by the device (15.1 s at 48000 Hz)
+pad: 902 libpad2 reads, 888 DBCMAN device reports
+ipu: idle, in 0 bytes
+vk: 855 frames, 1835 draw calls, 9269 vertices, 29 texture uploads (29 cached, 9.2 MB)
+vk: 85 pipelines (85 built ahead from earlier sessions, cache on); texture images in 1 blocks of 64 MB (4.6 MB used), 0 with memory of their own
+vk: 302 native mesh draws (mesh.vert), 0 recorded with the native material (mesh.frag); 0 batches refused for arena space
+vk: 2D overlay composed on 783 frames at 5x, 58706 draws lifted onto it, 0 native 2D draws kept in place because the frame wrote or read slot 0 after them
+vk: 55 fields dropped (replaced by a newer one before the renderer took them)
+timers: 905 counter reads, 0 interrupts raised (T0 mode=0000 comp=0, T1 mode=0083 comp=0)
+---- kernel state ----
+vblanks delivered   : 911
+preempt offers      : 96  (~393216 entries, ~431 per field)
+thread 0   status=01 prio=64  entry=00000000 waiting_sema=0
+thread 1   status=04 prio=0   entry=00339270 waiting_sema=3
+thread 2   status=04 prio=3   entry=0035A4AC waiting_sema=0
+thread 3   status=04 prio=3   entry=0035F408 waiting_sema=11
+thread 4   status=04 prio=12  entry=00363B74 waiting_sema=14
+sema   1   count=1    max=1    waiters=0
+sema   2   count=1    max=1    waiters=0
+sema   3   count=0    max=255  waiters=1
+sema   4   count=1    max=127  waiters=0
+sema   5   count=1    max=1    waiters=0
+sema   6   count=1    max=1    waiters=0
+sema   7   count=1    max=1    waiters=0
+sema   8   count=0    max=1    waiters=0
+sema   9   count=1    max=1    waiters=0
+sema   10  count=1    max=1    waiters=0
+sema   11  count=0    max=2147483647 waiters=1
+sema   12  count=1    max=1    waiters=0
+sema   13  count=1    max=1    waiters=0
+sema   14  count=0    max=1    waiters=1
+sema   15  count=1    max=1    waiters=0
+sema   16  count=0    max=1    waiters=0
+---- unhandled syscall usage ----
+---- syscall usage ----
+   syscall   2  x1
+   syscall  16  x1
+   syscall  20  x1
+   syscall  32  x4
+   syscall  34  x4
+   syscall  41  x2
+   syscall  47  x14
+   syscall  48  x1
+   syscall  50  x1
+   syscall  60  x1
+   syscall  61  x1
+   syscall  62  x2
+   syscall  64  x16
+   syscall  66  x925
+   syscall  67  x10
+   syscall  68  x917
+   syscall  69  x21
+   syscall  74  x2
+   syscall  75  x2
+   syscall  90  x3
+   syscall  91  x12
+   syscall 100  x1818
+   syscall 113  x1
+   syscall 116  x18
+   syscall 118  x1
+   syscall 119  x1
+   syscall 131  x43
+display: 101 displayed-target transitions = 6.5/s over 15.5 s (not a simulation-speed measurement). DISPFB written 3 times, 2 of them a change of buffer.
+cpu: 1.1 s of CPU over 15.5 s wall = 0.07 cores busy (the guest spin-waits, so this is not headroom)
+---- call ring (run summary), most recent last, 64 of 4096 entries ----
+   0034F250
+        (repeated 33 more)
+   00320538
+   00320098
+   003205D0
+   003200D8
+   00320648
+   00320098
+   003200D8
+   00327540
+   00320170
+   003275C8
+   0032B390
+   00388A88
+        (repeated 1 more)
+   00327610
+   00388A88
+        (repeated 1 more)
+   00327540
+   0032B9B8
+   00320170
+   003275C8
+   00327540
+   00320170
+   003275C8
+   003265E8
+   0032CB00  sceGsSyncPath
+   0032CA68  sceGsSyncV
+   0032C508  sceGsGetGParam
+   0032FE30  VSync
+   00337058  DIntr
+   003370B0  EIntr
+^C
