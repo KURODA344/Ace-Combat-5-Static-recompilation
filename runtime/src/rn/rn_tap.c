@@ -57,7 +57,7 @@ static const writer_fn writers[] = {
 
 static int code_matches(const known_fn *f) {
     for (int i = 0; i < 4; i++)
-        if (ps2_r32(f->addr + 4u * (u32)i) != f->w[i]) return 0;
+        if (!ps2_us(f->addr) || ps2_r32(ps2_us(f->addr) + 4u * (u32)i) != f->w[i]) return 0;
     return 1;
 }
 
@@ -69,15 +69,17 @@ static inline int in_fn(const known_fn *f, u32 a) {
 static struct { u32 site, id; } site_hash[SITE_HASH];
 static int log_new = -1;
 
-static u32 func_of(u32 site) {
+/* sites are SLUS_208.51 addresses; the function table is this executable's */
+static u32 func_of(u32 us_site) {
     unsigned lo = 0, hi = ps2_func_count;
-    if (!ps2_func_count) return 0;
+    u32 site = ps2_us(us_site);
+    if (!ps2_func_count || !site) return 0;
     while (hi - lo > 1u) {
         unsigned mid = lo + (hi - lo) / 2u;
         if (ps2_func_table[mid].addr <= site) lo = mid;
         else hi = mid;
     }
-    return ps2_func_table[lo].addr <= site ? ps2_func_table[lo].addr : 0u;
+    return ps2_func_table[lo].addr <= site ? ps2_to_us(ps2_func_table[lo].addr) : 0u;
 }
 
 static u32 emitter_for(u32 site, u32 via) {
@@ -188,20 +190,20 @@ static u32 lookup(u32 tadr) {
 
 static int tap_ot_open(ps2_ctx *ctx, void *u) {
     (void)u;
-    ot_caller = (u32)ctx->r[31].ud[0];
+    ot_caller = ps2_to_us((u32)ctx->r[31].ud[0]);
     ot_table = ps2_arg(ctx, 0);
     ot_bucket = ps2_arg(ctx, 1);
     return 0;
 }
 
 static int tap_2d(ps2_ctx *ctx, void *u) {
-    twod_caller[(uintptr_t)u] = (u32)ctx->r[31].ud[0];
+    twod_caller[(uintptr_t)u] = ps2_to_us((u32)ctx->r[31].ud[0]);
     return 0;
 }
 
 static int tap_db_open(ps2_ctx *ctx, void *u) {
     u32 buf = ps2_arg(ctx, 0);
-    u32 ra = (u32)ctx->r[31].ud[0];
+    u32 ra = ps2_to_us((u32)ctx->r[31].ud[0]);
     u32 site = ra, via = RN_VIA_DIRECT, emitter;
     u32 slot = OPEN_MAX;
     (void)u;
@@ -260,7 +262,7 @@ static u32 screen_key;
 static int tap_scene(ps2_ctx *ctx, void *u) {
     u32 obj = ps2_arg(ctx, 0);
     (void)u;
-    if (obj && obj != ps2_r32(A_SCENE_ROOT_PTR))
+    if (obj && obj != ps2_r32(ps2_us(A_SCENE_ROOT_PTR)))
         screen_key = ((u32)ps2_r8(obj + 8u) << 8) | ps2_r8(obj + 9u);
     return 0;
 }

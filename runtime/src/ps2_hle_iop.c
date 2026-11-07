@@ -507,7 +507,7 @@ void ps2_nusound_report(void) {
 }
 
 void ps2_dump_archive(const char *when) {
-    u32 app = ps2_r32(0x004432ACu);
+    u32 app = ps2_r32(ps2_us(0x004432ACu));
     u32 ar  = app ? ps2_r32(app + 19540u) : 0;
     int s;
     if (!ar) { ps2_log("archive[%s]: app=%08X, no object", when, app); return; }
@@ -662,13 +662,13 @@ void hook_scene(ps2_ctx *ctx) {
         if (tl < 0) { const char *e = getenv("PS2_TRACE_LOAD");
                       tl = (e && *e && *e != '0'); }
         if (tl) {
-            u32 base = ps2_r32(0x00448270u - 20420u);
+            u32 base = ps2_r32(ps2_us(0x00448270u - 20420u));
             u32 o    = base ? ps2_r32(base + 19596u) : 0u;
             u32 sub  = o ? ps2_r32(o + 44u) : 0xFFFFFFFEu;
             u32 io   = base ? ps2_r32(base + 19592u) : 0u;
             u32 st   = io ? ps2_r32(io + 132u) : 0xFFFFFFFEu;
             {   static u32 last_t[4], last_c[4];
-                u32 rq = ps2_r32(0x00448270u - 17008u), q;
+                u32 rq = ps2_r32(ps2_us(0x00448270u - 17008u)), q;
                 for (q = 0; rq && q < 4u; q++) {
                     u32 t = ps2_r32(rq + 20u + 4u * q);
                     u32 c = ps2_r32(rq + 32u + 4u * q);
@@ -689,7 +689,7 @@ void hook_scene(ps2_ctx *ctx) {
                 pch = (int)(signed char)ps2_r8(stab + i + 4u * j);
             }
             {
-                u32 arr = ps2_r32(0x00448270u - 10164u);
+                u32 arr = ps2_r32(ps2_us(0x00448270u - 10164u));
                 {
                     static u32 said;
                     if (arr && !said) { said = 1;
@@ -820,7 +820,7 @@ void hook_scene_next(ps2_ctx *ctx) {
 
 #define NUSNDSTR_SID 0x81000201u
 
-#define NUSNDSTR_SEQ 0x0047EC9Cu
+#define NUSNDSTR_SEQ ps2_us(0x0047EC9Cu)
 
 static u32 nusndstr_seq;
 static u64 nusndstr_transfers, nusndstr_bytes;

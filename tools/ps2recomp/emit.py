@@ -835,7 +835,10 @@ class Emitter:
             elif ins.name == "J":
                 targets.add(ins.target)
             targets.update(p.switches.get(a, ()))
-        ds_entries = targets & set(fn.delay_slots)
+        # delay slots that start a function of their own are reached by a
+        # call to that function, not by a local trampoline
+        ds_entries = {a for a in targets & set(fn.delay_slots)
+                      if a not in fn.own and a not in p.functions}
         for a in ds_entries:
             if a not in p.insns or p.insns[a].has_delay_slot or a + 4 not in fn.own:
                 raise ValueError("unsupported delay-slot entry at %08X" % a)
@@ -888,7 +891,10 @@ class Emitter:
             nxt = addrs[idx + 1] if idx + 1 < len(addrs) else None
             if can_ft and nxt != nat:
                 self.flush_slots(out)
-                if p.in_text(nat):
+                if nat in fn.own and nat > a:
+                    fn.labels.add(nat)
+                    self.w(out, "goto %s;" % label(nat), 1)
+                elif p.in_text(nat):
                     self._target_call(fn, nat, out, 1, tail=True)
                 else:
                     self.w(out, "return;", 1)
@@ -953,6 +959,19 @@ class Emitter:
             fp.write("};\n")
             fp.write("const unsigned ps2_func_count = %d;\n" % len(entries))
             fp.write("const u32 ps2_entry_point = 0x%08Xu;\n" % p.elf.entry)
+            # where the addresses the runtime hard-codes (those of SLUS_208.51)
+            # are in this executable; empty for the US build itself
+            amap = self.opts.get("addr_map") or {}
+            rng = amap.get("ranges", [])
+            fp.write("const char ps2_game_id[] = \"%s\";\n"
+                     % amap.get("game_id", "SLUS-20851"))
+            fp.write("const ps2_addr_range ps2_addr_map[] = {\n")
+            for lo, hi, d in rng:
+                fp.write("    { 0x%08Xu, 0x%08Xu, %d },\n" % (lo, hi, d))
+            if not rng:
+                fp.write("    { 0u, 0u, 0 },\n")
+            fp.write("};\n")
+            fp.write("const unsigned ps2_addr_map_count = %d;\n" % len(rng))
 
         named = sorted((a, n) for a, n in self.symbols.items() if p.in_text(a))
         with open(os.path.join(outdir, "ps2_symbols.c"), "w") as fp:

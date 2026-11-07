@@ -312,7 +312,9 @@ static u32 symbols_load(const char *path, const char *owner) {
                     lineno);
             continue;
         }
-        if (ps2_symbol_add((u32)addr, name) == 0) added++;
+        /* the lists name SLUS_208.51 addresses; the symbol table holds this
+         * executable's */
+        if (ps2_us((u32)addr) && ps2_symbol_add(ps2_us((u32)addr), name) == 0) added++;
         else taken++;
     }
     fclose(fp);
@@ -394,10 +396,10 @@ static void requirements_resolve(void) {
             snprintf(why, sizeof why, "it needs mod ABI %d, and this runtime "
                      "has %d", m->abi, AC5_ABI_VERSION);
             switch_off(m, why);
-        } else if (m->game[0] && strcmp(m->game, "SLUS-20851")) {
+        } else if (m->game[0] && strcmp(m->game, ps2_game_id)) {
             char why[200];
-            snprintf(why, sizeof why, "it is for %s, and this is SLUS-20851",
-                     m->game);
+            snprintf(why, sizeof why, "it is for %s, and this is %s",
+                     m->game, ps2_game_id);
             switch_off(m, why);
         } else if (requires_each(m, NULL, NULL) < 0) {
             switch_off(m, "its requires line is malformed -- write it as "
@@ -609,7 +611,7 @@ static int archive_member_setup(ps2_ctx *ctx, void *user) {
 
 static void archive_driver_install(void) {
     for (unsigned i = 0; i < sizeof ulz_setup_code / sizeof ulz_setup_code[0]; i++) {
-        if (ps2_r32(AC5_ULZ_SETUP + 4u * i) == ulz_setup_code[i]) continue;
+        if (ps2_r32(ps2_us(AC5_ULZ_SETUP) + 4u * i) == ulz_setup_code[i]) continue;
         ps2_vfs_pac_revert("the code at 00102A78 is not DATA.PAC's decompressor "
                            "set-up this runtime was written against");
         return;

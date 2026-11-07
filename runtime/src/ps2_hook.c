@@ -196,6 +196,19 @@ static hook_site *site_of(u32 guest) {
 
 static const char *who(const char *owner) { return owner ? owner : "?"; }
 
+/* Hooks are asked for by SLUS_208.51 address (the runtime, the mod host and
+ * mods all use those); on another build of the game, find where it went. */
+static int to_target(u32 *guest_addr, const char *owner) {
+    u32 a = ps2_us(*guest_addr);
+    if (!a) {
+        ps2_log("hook: %08X (SLUS_208.51) has no counterpart in %s, so %s "
+                "cannot hook it", *guest_addr, ps2_game_id, who(owner));
+        return -1;
+    }
+    *guest_addr = a;
+    return 0;
+}
+
 static int may_patch(const char *what, u32 addr, const char *owner) {
     if (ps2_kernel_on_ee_thread()) return 1;
     ps2_log("hook: %s cannot %s %08X from this thread -- attach from a hook, "
@@ -419,6 +432,7 @@ static int chain_insert(hook_entry *chain, unsigned *n, u32 addr,
 int ps2_hook_before(u32 guest_addr, ps2_hook_fn fn, void *user,
                     int priority, const char *owner) {
     hook_site *s;
+    if (to_target(&guest_addr, owner)) return -1;
     if (!fn || !(s = prepare(guest_addr, "hook", owner))) return -1;
     return chain_insert(s->before, &s->nbefore, guest_addr, fn, user, priority,
                         owner, "before");
@@ -427,6 +441,7 @@ int ps2_hook_before(u32 guest_addr, ps2_hook_fn fn, void *user,
 int ps2_hook_after(u32 guest_addr, ps2_hook_fn fn, void *user,
                    int priority, const char *owner) {
     hook_site *s;
+    if (to_target(&guest_addr, owner)) return -1;
     if (!fn || !(s = prepare(guest_addr, "hook", owner))) return -1;
     return chain_insert(s->after, &s->nafter, guest_addr, fn, user, priority,
                         owner, "after");
@@ -435,7 +450,9 @@ int ps2_hook_after(u32 guest_addr, ps2_hook_fn fn, void *user,
 int ps2_hook_replace(u32 guest_addr, ps2_hook_fn fn, void *user, int priority,
                      const char *owner) {
     hook_site *s;
-    const char *nm = ps2_symbol_name(guest_addr);
+    const char *nm;
+    if (to_target(&guest_addr, owner)) return -1;
+    nm = ps2_symbol_name(guest_addr);
     if (!fn || !(s = prepare(guest_addr, "replace", owner))) return -1;
     if (s->replacement) {
         if (s->replacement_priority >= priority) {
@@ -460,8 +477,11 @@ int ps2_hook_replace(u32 guest_addr, ps2_hook_fn fn, void *user, int priority,
 }
 
 void ps2_hook_call_original(u32 guest_addr, ps2_ctx *ctx) {
-    hook_site *s = site_of(guest_addr);
-    u8 *host = s ? s->host : host_of(guest_addr);
+    hook_site *s;
+    u8 *host;
+    if (to_target(&guest_addr, "call_original")) return;
+    s = site_of(guest_addr);
+    host = s ? s->host : host_of(guest_addr);
     if (!host) {
         ps2_log("hook: call_original on %08X, which is not a recompiled "
                 "function", guest_addr);
@@ -472,10 +492,12 @@ void ps2_hook_call_original(u32 guest_addr, ps2_ctx *ctx) {
 
 int ps2_hook_redirect(u32 from_guest, u32 to_guest, int priority,
                       const char *owner) {
-    u8 *target = host_of(to_guest);
+    u8 *target;
     u32 lo, hi;
     redirect *r = NULL;
     ps2_fn original;
+    if (to_target(&from_guest, owner) || to_target(&to_guest, owner)) return -1;
+    target = host_of(to_guest);
     if (!may_patch("redirect", from_guest, owner)) return -1;
     ps2_text_bounds(&lo, &hi);
     if ((from_guest & 3u) || from_guest < lo || from_guest >= hi) {

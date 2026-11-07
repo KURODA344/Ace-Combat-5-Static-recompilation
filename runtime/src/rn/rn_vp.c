@@ -117,8 +117,8 @@ static void parse_prog(vp_prog *p) {
     p->pcs = (u16 *)malloc(cap * sizeof *p->pcs);
     p->words = (u32 *)malloc(cap * 2 * sizeof *p->words);
     if (!p->pcs || !p->words) return;
-    pos = p->start + 8u;
-    while (pos + 4u <= p->end) {
+    pos = ps2_us(p->start) + 8u;
+    while (pos + 4u <= ps2_us(p->end)) {
         u32 code = ps2_r32(pos), cmd = (code >> 24) & 0x7Fu;
         pos += 4u;
         if (cmd == 0x4Au) {

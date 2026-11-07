@@ -181,7 +181,7 @@ static int tap_flare(ps2_ctx *ctx, void *u) {
 void rn_fixes_init(void) {
     const char *e = getenv("PS2_FIX_FLARE");
     if (e && *e == '0') return;
-    if (ps2_r32(F_SUN_FLARE) != sun_flare_w[0] || ps2_r32(F_SUN_FLARE + 4u) != sun_flare_w[1]) {
+    if (ps2_r32(ps2_us(F_SUN_FLARE)) != sun_flare_w[0] || ps2_r32(ps2_us(F_SUN_FLARE) + 4u) != sun_flare_w[1]) {
         ps2_log("rn-fix: the sun flare %08X does not match; not fixed", F_SUN_FLARE);
         return;
     }

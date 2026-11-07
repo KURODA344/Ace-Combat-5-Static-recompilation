@@ -441,11 +441,12 @@ void ps2_settings_apply_game_patches(void) {
     static int logged = -1;
     if (!ps2_ram) return;
     for (int i = 0; i < 2; i++) {
-        u32 cur = ps2_r32(ws_addr[i]);
+        u32 a = ps2_us(ws_addr[i]), cur = a ? ps2_r32(a) : 0u;
+        if (!a) continue;
         if (ps2_cfg.widescreen) {
-            if (cur == ws_orig[i]) ps2_w32(ws_addr[i], ws_patch[i]);
+            if (cur == ws_orig[i]) ps2_w32(a, ws_patch[i]);
         } else if (cur == ws_patch[i]) {
-            ps2_w32(ws_addr[i], ws_orig[i]);
+            ps2_w32(a, ws_orig[i]);
         }
     }
     if (logged != ps2_cfg.widescreen) {

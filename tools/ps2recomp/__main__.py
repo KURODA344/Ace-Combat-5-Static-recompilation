@@ -28,6 +28,9 @@ def main(argv=None):
     ap.add_argument("--hooks",
                     help="JSON {symbol-or-addr: native_handler}; the handler is "
                          "called on entry, before the recompiled body runs")
+    ap.add_argument("--addr-map",
+                    help="addr_map.json from tools/port_region.py, for an "
+                         "executable other than SLUS_208.51")
     ap.add_argument("--report", help="write a JSON analysis report here")
     args = ap.parse_args(argv)
 
@@ -128,11 +131,19 @@ def main(argv=None):
                            "resolved_overrides": overrides, "resolved_hooks": hooks,
                            "symbol_provenance": provenance}, fp, indent=1)
         raise ValueError("unresolved override/hook targets: " + ", ".join(missing))
+    addr_map = None
+    if args.addr_map:
+        with open(args.addr_map) as fp:
+            addr_map = json.load(fp)
+        print("addr-map: %s -> %s, %d ranges"
+              % (addr_map.get("from"), addr_map.get("to"),
+                 len(addr_map.get("ranges", ()))))
     os.makedirs(args.outdir, exist_ok=True)
     em = Emitter(prog, {"comments": args.comments,
                         "symbols": symbols,
                         "overrides": overrides,
-                        "hooks": hooks})
+                        "hooks": hooks,
+                        "addr_map": addr_map})
     nfiles, nfuncs = em.emit_all(args.outdir, per_file=args.per_file)
 
     base, img = elf.image()

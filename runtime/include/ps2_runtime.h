@@ -135,6 +135,21 @@ extern const ps2_func_entry ps2_func_table[];
 extern const unsigned ps2_func_count;
 extern const u32 ps2_entry_point;
 
+/* The runtime hard-codes addresses of SLUS_208.51. For another build of the
+ * game (tools/port_region.py) the recompiler emits where each of them moved;
+ * ps2_us() translates one and returns 0 for an address the port could not
+ * place. On the US build it is the identity. */
+typedef struct ps2_addr_range {
+    u32 lo, hi;
+    s32 delta;
+} ps2_addr_range;
+
+extern const ps2_addr_range ps2_addr_map[];
+extern const unsigned ps2_addr_map_count;
+extern const char ps2_game_id[];
+u32 ps2_us(u32 us_addr);
+u32 ps2_to_us(u32 addr);
+
 typedef struct ps2_symbol {
     u32 addr;
     const char *name;

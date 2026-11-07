@@ -606,6 +606,9 @@ int main(int argc, char **argv) {
 const ps2_func_entry ps2_func_table[] = { { 0u, NULL } };
 const unsigned       ps2_func_count = 0u;
 const u32            ps2_entry_point = 0u;
+const ps2_addr_range ps2_addr_map[] = { { 0u, 0u, 0 } };
+const unsigned       ps2_addr_map_count = 0u;
+const char           ps2_game_id[] = "SLUS-20851";
 const ps2_symbol     ps2_symbols[] = { { 0u, "" } };
 const unsigned       ps2_symbol_count = 0u;
 

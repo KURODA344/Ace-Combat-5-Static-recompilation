@@ -44,7 +44,7 @@ const char *rn_emitter_name(u32 id, char *buf, size_t cap) {
     }
     {
         const rn_emitter *e = &emitters[id];
-        const char *nm = e->func ? ps2_symbol_name(e->func) : NULL;
+        const char *nm = e->func ? ps2_symbol_name(ps2_us(e->func)) : NULL;
         static const char *via[4] = { "", " via 2D", " direct", "" };
         const char *v = via[e->via < 4 ? e->via : 0];
         if (e->via == RN_VIA_WRITER && !nm)

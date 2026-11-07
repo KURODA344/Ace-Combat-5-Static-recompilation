@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define CODE_END 0x003992C0u
+#define CODE_END ps2_us(0x003992C0u)
 
 enum { P_ACTIVE, P_CONFLICT, P_REMOVED };
 

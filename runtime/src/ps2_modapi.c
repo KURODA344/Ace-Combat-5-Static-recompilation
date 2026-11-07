@@ -326,7 +326,7 @@ static int api_on_shutdown(ac5_field_fn fn, void *user) {
 }
 
 #define AC5_SCENE_DISPATCH 0x0031CF00u
-#define AC5_MAIN_MACHINE   0x004459ACu
+#define AC5_MAIN_MACHINE   ps2_us(0x004459ACu)
 
 static struct { u32 obj; int key; } machines[8];
 static unsigned nmachines;
@@ -634,11 +634,12 @@ void ps2_modapi_shutdown(void) {
     for (unsigned i = 0; i < napis; i++) store_flush(apis[i]);
 }
 
+/* mods work in SLUS_208.51 addresses, the symbol table in this executable's */
 static uint32_t api_symbol(const char *name) {
-    return ps2_symbol_find(name);
+    return ps2_to_us(ps2_symbol_find(name));
 }
 static const char *api_symbol_name(uint32_t addr) {
-    return ps2_symbol_name(addr);
+    return ps2_symbol_name(ps2_us(addr));
 }
 
 static const char *api_config(const char *key) {
@@ -688,7 +689,7 @@ const ac5_api *ps2_modapi_for(const char *mod_id, int priority,
     m->config_get = config_get;
 
     m->api.abi_version = AC5_ABI_VERSION;
-    m->api.game_id = "SLUS-20851";
+    m->api.game_id = ps2_game_id;
     m->api.mod_id = m->id;
     m->api.priority = priority;
     m->api.log = api_log;

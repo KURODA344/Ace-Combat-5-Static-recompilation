@@ -155,6 +155,50 @@ void ps2_mem_init(void) {
 u8 *ps2_vu1_memory(void) { return ps2_vu1_mem; }
 u8 *ps2_vu1_microcode(void) { return ps2_vu1_micro; }
 
+u32 ps2_us(u32 a) {
+    unsigned lo = 0, hi = ps2_addr_map_count;
+    if (!ps2_addr_map_count) return a;
+    while (lo < hi) {
+        unsigned mid = lo + (hi - lo) / 2u;
+        if (a < ps2_addr_map[mid].lo) hi = mid;
+        else if (a >= ps2_addr_map[mid].hi) lo = mid + 1u;
+        else return a + (u32)ps2_addr_map[mid].delta;
+    }
+    return 0u;
+}
+
+/* The other way: an address of this executable back to SLUS_208.51, for the
+ * code that keeps its tables in US addresses (the native renderer, mods). */
+static ps2_addr_range *ps2_inv_map;
+
+static int inv_cmp(const void *a, const void *b) {
+    const ps2_addr_range *x = (const ps2_addr_range *)a, *y = (const ps2_addr_range *)b;
+    return x->lo < y->lo ? -1 : x->lo > y->lo;
+}
+
+u32 ps2_to_us(u32 a) {
+    unsigned lo = 0, hi = ps2_addr_map_count;
+    if (!ps2_addr_map_count) return a;
+    if (!ps2_inv_map) {
+        ps2_addr_range *m = (ps2_addr_range *)malloc(ps2_addr_map_count * sizeof *m);
+        if (!m) ps2_fatal("out of memory inverting the address map");
+        for (unsigned i = 0; i < ps2_addr_map_count; i++) {
+            m[i].lo = ps2_addr_map[i].lo + (u32)ps2_addr_map[i].delta;
+            m[i].hi = ps2_addr_map[i].hi + (u32)ps2_addr_map[i].delta;
+            m[i].delta = -ps2_addr_map[i].delta;
+        }
+        qsort(m, ps2_addr_map_count, sizeof *m, inv_cmp);
+        ps2_inv_map = m;
+    }
+    while (lo < hi) {
+        unsigned mid = lo + (hi - lo) / 2u;
+        if (a < ps2_inv_map[mid].lo) hi = mid;
+        else if (a >= ps2_inv_map[mid].hi) lo = mid + 1u;
+        else return a + (u32)ps2_inv_map[mid].delta;
+    }
+    return 0u;
+}
+
 #define PS2_TEXT_LO 0x00100000u
 static ps2_fn *ps2_fn_index;
 static u32 ps2_text_lo, ps2_text_hi;

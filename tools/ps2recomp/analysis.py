@@ -170,6 +170,9 @@ class Program:
             self.owner = {}
             self.functions = {}
             promote: Set[int] = set()
+            # addresses owned only because they sit in some branch's delay
+            # slot; a function whose entry is such an address may claim it
+            ds_only: Set[int] = set()
             for entry in sorted(self.entries):
                 if not self.in_text(entry):
                     continue
@@ -178,6 +181,7 @@ class Program:
                 self.functions[entry] = fn
                 work = [entry]
                 seen: Set[int] = set()
+                ds_targets: Set[int] = set()
                 while work:
                     a = work.pop()
                     if a in seen:
@@ -185,8 +189,12 @@ class Program:
                     if not self.in_text(a):
                         continue
                     own = self.owner.get(a)
+                    if a == entry and a in ds_only:
+                        own = None
                     if own is not None:
-                        if own != entry:
+                        if own == entry and a in ds_only:
+                            ds_targets.add(a)
+                        elif own != entry:
                             fn.tail_calls.add(a)
                             if a not in self.entries:
                                 promote.add(a)
@@ -196,6 +204,7 @@ class Program:
                         continue
                     seen.add(a)
                     self.owner[a] = entry
+                    ds_only.discard(a)
                     ins = self.insns[a]
                     succ, uses_ds, _ft = self._successors(ins, fn)
                     if uses_ds:
@@ -204,6 +213,7 @@ class Program:
                             fn.delay_slots.add(ds)
                             if self.owner.get(ds) is None:
                                 self.owner[ds] = entry
+                                ds_only.add(ds)
                     for s in succ:
                         if not self.in_text(s):
                             fn.tail_calls.add(s)
@@ -219,6 +229,13 @@ class Program:
                             continue
                         work.append(s)
                 fn.addrs = sorted(seen)
+                # a jump into one of our own delay slots is emitted as a
+                # trampoline that resumes at slot+4; when that address is not
+                # ours (slot of a J/JR, or code owned elsewhere), the slot has
+                # to become a function of its own
+                for a in ds_targets:
+                    if a + 4 not in seen and a not in self.entries:
+                        promote.add(a)
             if not promote:
                 break
             if rounds >= 64:

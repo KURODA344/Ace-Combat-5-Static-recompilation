@@ -164,14 +164,14 @@ void rn_intent_tag(u32 tadr, u32 emitter) {
 }
 
 static int tap_helper(ps2_ctx *ctx, void *u) {
-    helper_caller[(uintptr_t)u] = (u32)ctx->r[31].ud[0];
+    helper_caller[(uintptr_t)u] = ps2_to_us((u32)ctx->r[31].ud[0]);
     return 0;
 }
 
 static u32 writer_ra;
 static int tap_writer_enter(ps2_ctx *ctx, void *u) {
     (void)u;
-    writer_ra = (u32)ctx->r[31].ud[0];
+    writer_ra = ps2_to_us((u32)ctx->r[31].ud[0]);
     return 0;
 }
 
@@ -282,7 +282,7 @@ static void record_sky(u32 dome, u32 pkt, u32 end, u32 site, rn_int_skydome *bod
     hdr_init(&h, RN_INT_SKYDOME, need, site, pkt);
     ps2_get_mem(body->screen, dome, sizeof body->screen);
     ps2_get_mem(body->clip, dome + 64u, sizeof body->clip);
-    ps2_get_mem(body->seg, 0x003C8370u, sizeof body->seg);
+    ps2_get_mem(body->seg, ps2_us(0x003C8370u), sizeof body->seg);
     body->rings = rings;
     body->segs = 32u;
     memcpy(out, &h, sizeof h);
@@ -369,7 +369,7 @@ static int tap_clip_tri(ps2_ctx *ctx, void *u) {
     ps2_get_mem(tri_in.clip, obj + 64u, sizeof tri_in.clip);
     tri_in.prim = ps2_r32(obj + 128u);
     for (u32 i = 0; i < 3u; i++) {
-        u32 base = 0x003C8A00u + 64u * i;
+        u32 base = ps2_us(0x003C8A00u) + 64u * i;
         ps2_get_mem(tri_in.colour + 4u * i, base, 16);
         ps2_get_mem(tri_in.uv + 4u * i, base + 16u, 16);
         ps2_get_mem(tri_in.pos + 4u * i, base + 32u, 16);
@@ -437,7 +437,7 @@ static struct { u32 ra, pkt, xy0; u64 xy1z; } sprite_in;
 
 static int tap_sprite_rows_enter(ps2_ctx *ctx, void *u) {
     (void)u;
-    sprite_in.ra = (u32)ctx->r[31].ud[0];
+    sprite_in.ra = ps2_to_us((u32)ctx->r[31].ud[0]);
     sprite_in.pkt = (u32)ctx->r[4].ud[0];
     sprite_in.xy0 = (u32)ctx->r[5].ud[0];
     sprite_in.xy1z = ctx->r[6].ud[0];
@@ -628,8 +628,8 @@ void rn_intent_init(void) {
         return;
     }
     for (uintptr_t i = 0; i < N_GROUPS; i++) {
-        if (ps2_r32(groups[i].addr) != groups[i].w0
-            || ps2_r32(groups[i].addr + 4u) != groups[i].w1) {
+        if (ps2_r32(ps2_us(groups[i].addr)) != groups[i].w0
+            || ps2_r32(ps2_us(groups[i].addr) + 4u) != groups[i].w1) {
             ps2_log("rn: 2D group writer %08X does not match; not claimed",
                     groups[i].addr);
             continue;
@@ -640,8 +640,8 @@ void rn_intent_init(void) {
                               "rn-intents") < 0)
             ps2_log("rn: the hook layer refused 2D group writer %08X", groups[i].addr);
     }
-    if (ps2_r32(F_SKY_DOME) == sky_dome_w[0] && ps2_r32(F_SKY_DOME + 4u) == sky_dome_w[1]
-        && ps2_r32(F_SKY_HAZE) == sky_haze_w[0] && ps2_r32(F_SKY_HAZE + 8u) == sky_haze_w[1]) {
+    if (ps2_r32(ps2_us(F_SKY_DOME)) == sky_dome_w[0] && ps2_r32(ps2_us(F_SKY_DOME) + 4u) == sky_dome_w[1]
+        && ps2_r32(ps2_us(F_SKY_HAZE)) == sky_haze_w[0] && ps2_r32(ps2_us(F_SKY_HAZE) + 8u) == sky_haze_w[1]) {
         if (ps2_hook_after(F_SKY_DOME, tap_sky_dome, NULL, 100, "rn-intents") < 0
             || ps2_hook_before(F_SKY_HAZE, tap_sky_haze_enter, NULL, 100, "rn-intents") < 0
             || ps2_hook_after(F_SKY_HAZE, tap_sky_haze, NULL, 100, "rn-intents") < 0)
@@ -650,8 +650,8 @@ void rn_intent_init(void) {
         ps2_log("rn: the sky writers %08X / %08X do not match; not recorded",
                 F_SKY_DOME, F_SKY_HAZE);
     }
-    if (ps2_r32(F_CLIP_TRI) == clip_tri_w[0] && ps2_r32(F_CLIP_TRI + 4u) == clip_tri_w[1]
-        && ps2_r32(F_DRAW_FAN) == draw_fan_w[0] && ps2_r32(F_DRAW_FAN + 4u) == draw_fan_w[1]) {
+    if (ps2_r32(ps2_us(F_CLIP_TRI)) == clip_tri_w[0] && ps2_r32(ps2_us(F_CLIP_TRI) + 4u) == clip_tri_w[1]
+        && ps2_r32(ps2_us(F_DRAW_FAN)) == draw_fan_w[0] && ps2_r32(ps2_us(F_DRAW_FAN) + 4u) == draw_fan_w[1]) {
         if (ps2_hook_before(F_CLIP_TRI, tap_clip_tri, NULL, 100, "rn-intents") < 0
             || ps2_hook_after(F_DRAW_FAN, tap_draw_fan, NULL, 100, "rn-intents") < 0)
             ps2_log("rn: the hook layer refused the clip-and-draw taps");
@@ -659,10 +659,10 @@ void rn_intent_init(void) {
         ps2_log("rn: the clip-and-draw helpers %08X / %08X do not match; not recorded",
                 F_CLIP_TRI, F_DRAW_FAN);
     }
-    if (ps2_r32(F_CLOUD_PROJECT) == cloud_project_w[0]
-        && ps2_r32(F_CLOUD_PROJECT + 4u) == cloud_project_w[1]
-        && ps2_r32(F_SPRITE_ROWS) == sprite_rows_w[0]
-        && ps2_r32(F_SPRITE_ROWS + 4u) == sprite_rows_w[1]) {
+    if (ps2_r32(ps2_us(F_CLOUD_PROJECT)) == cloud_project_w[0]
+        && ps2_r32(ps2_us(F_CLOUD_PROJECT) + 4u) == cloud_project_w[1]
+        && ps2_r32(ps2_us(F_SPRITE_ROWS)) == sprite_rows_w[0]
+        && ps2_r32(ps2_us(F_SPRITE_ROWS) + 4u) == sprite_rows_w[1]) {
         if (ps2_hook_before(F_CLOUD_PROJECT, tap_cloud_project_enter, NULL, 100, "rn-intents") < 0
             || ps2_hook_after(F_CLOUD_PROJECT, tap_cloud_project, NULL, 100, "rn-intents") < 0
             || ps2_hook_before(F_SPRITE_ROWS, tap_sprite_rows_enter, NULL, 100, "rn-intents") < 0
@@ -672,10 +672,10 @@ void rn_intent_init(void) {
         ps2_log("rn: the cloud writers %08X / %08X do not match; not recorded",
                 F_CLOUD_PROJECT, F_SPRITE_ROWS);
     }
-    if (ps2_r32(F_CLOUD_PLANES) == cloud_planes_w[0]
-        && ps2_r32(F_CLOUD_PLANES + 4u) == cloud_planes_w[1]
-        && ps2_r32(F_CLOUD_VERTEX) == cloud_vertex_w[0]
-        && ps2_r32(F_CLOUD_VERTEX + 4u) == cloud_vertex_w[1]) {
+    if (ps2_r32(ps2_us(F_CLOUD_PLANES)) == cloud_planes_w[0]
+        && ps2_r32(ps2_us(F_CLOUD_PLANES) + 4u) == cloud_planes_w[1]
+        && ps2_r32(ps2_us(F_CLOUD_VERTEX)) == cloud_vertex_w[0]
+        && ps2_r32(ps2_us(F_CLOUD_VERTEX) + 4u) == cloud_vertex_w[1]) {
         if (ps2_hook_before(F_CLOUD_PLANES, tap_cloud_planes_enter, NULL, 100, "rn-intents") < 0
             || ps2_hook_after(F_CLOUD_PLANES, tap_cloud_planes, NULL, 100, "rn-intents") < 0
             || ps2_hook_before(F_CLOUD_VERTEX, tap_cloud_vertex_enter, NULL, 100, "rn-intents") < 0
